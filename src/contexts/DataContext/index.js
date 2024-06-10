@@ -29,7 +29,9 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     if (data) return;
     getData();
-  });
+  }, [data, getData]);
+
+  const lastEvent = data?.events ? data.events[data.events.length - 1] : null;
   
   return (
     <DataContext.Provider
@@ -37,6 +39,7 @@ export const DataProvider = ({ children }) => {
       value={{
         data,
         error,
+        lastEvent
       }}
     >
       {children}

@@ -14,8 +14,7 @@ import { useData } from "../../contexts/DataContext";
 import ModalEvent from "../../containers/ModalEvent";
 
 const Page = () => {
-const { data } = useData();
-const last = data?.events?.[data.events.length - 1];
+const { lastEvent } = useData();
 
   return <>
     <header>
@@ -25,7 +24,7 @@ const last = data?.events?.[data.events.length - 1];
       <section className="SliderContainer">
         <Slider />
       </section>
-      <section className="ServicesContainer">
+      <section className="ServicesContainer" id="nos-services">
         <h2 className="Title">Nos services</h2>
         <p>Nous organisons des événements sur mesure partout dans le monde</p>
         <div className="ListContainer">
@@ -54,11 +53,11 @@ const last = data?.events?.[data.events.length - 1];
           </ServiceCard>
         </div>
       </section>
-      <section className="EventsContainer">
+      <section className="EventsContainer" id="nos-realisations">
         <h2 className="Title">Nos réalisations</h2>
         <EventList />
       </section>
-      <section className="PeoplesContainer">
+      <section className="PeoplesContainer" id="notre-equipe">
         <h2 className="Title">Notre équipe</h2>
         <p>Une équipe d’experts dédiés à l’ogranisation de vos événements</p>
         <div className="ListContainer">
@@ -119,14 +118,14 @@ const last = data?.events?.[data.events.length - 1];
     <footer className="row">
       <div className="col presta">
         <h3>Notre dernière prestation</h3>
-        {last && (
-            <Modal Content={<ModalEvent event={last} />}>
+        {lastEvent && (
+            <Modal Content={<ModalEvent event={lastEvent} />}>
               {({ setIsOpened }) => (
                 <EventCard
                   onClick={() => setIsOpened(true)}
-                  imageSrc={last?.cover}
-                  title={last?.title}
-                  date={new Date(last?.date)}
+                  imageSrc={lastEvent?.cover}
+                  title={lastEvent?.title}
+                  date={new Date(lastEvent?.date)}
                   small
                   label="boom"
                 />
