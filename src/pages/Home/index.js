@@ -14,7 +14,7 @@ import { useData } from "../../contexts/DataContext";
 import ModalEvent from "../../containers/ModalEvent";
 
 const Page = () => {
-const { lastEvent } = useData();
+const { last } = useData();
 
   return <>
     <header>
@@ -118,14 +118,14 @@ const { lastEvent } = useData();
     <footer className="row">
       <div className="col presta">
         <h3>Notre dernière prestation</h3>
-        {lastEvent && (
-            <Modal Content={<ModalEvent event={lastEvent} />}>
+        {last && (
+            <Modal Content={<ModalEvent event={last} />}>
               {({ setIsOpened }) => (
                 <EventCard
                   onClick={() => setIsOpened(true)}
-                  imageSrc={lastEvent?.cover}
-                  title={lastEvent?.title}
-                  date={new Date(lastEvent?.date)}
+                  imageSrc={last?.cover}
+                  title={last?.title}
+                  date={new Date(last?.date)}
                   small
                   label="boom"
                 />
